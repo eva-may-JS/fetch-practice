@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div id="content"></div>
 
     <script>
         // Fetch receives a response from the server: A promise to get the data
         fetch("https://ci-swapi.herokuapp.com/api/")
-        // .then (response): Return of "promise": The response will be returned
-        // response.json is another "promise"
-        .then(response => response.json())
-        //Return of promise
-        .then(data => {
+            // .then (response): Return of "promise": The response will be returned
+            // response.json is another "promise"
+            .then(response => response.json())
+            //Return of promise. Function completed below
+            .then(data => displayData(data))
+            // In case there is an error, this will be logged so we know
+            .catch((e) => {
+                console.error("Error")
+            })
+
+        /* Callback function. Informs us when the promise has been fulfilled, i.e. 
+        the data has been returned and transformed into json (or text). Written
+        underneath the fetch() to separate retrieving the data from displaying
+        and manipulating it */
+        function displayData(data) {
             document.getElementById("content").innerText = data.people;
-        })
-        // In case there is an error, this will be logged so we know
-        .catch((e) => {
-            console.error("Error")
-        })
+        }
     </script>
 </body>
+
 </html>
