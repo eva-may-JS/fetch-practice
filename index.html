@@ -9,10 +9,18 @@
     <div id="content"></div>
 
     <script>
+        // Fetch receives a response from the server: A promise to get the data
         fetch("https://ci-swapi.herokuapp.com/api/")
+        // .then (response): Return of "promise": The response will be returned
+        // response.json is another "promise"
         .then(response => response.json())
+        //Return of promise
         .then(data => {
             document.getElementById("content").innerText = data.people;
+        })
+        // In case there is an error, this will be logged so we know
+        .catch((e) => {
+            console.error("Error")
         })
     </script>
 </body>
